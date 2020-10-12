@@ -1,0 +1,116 @@
+@startuml
+
+class loginPanel{
+    JLabel id ; JTextField id_
+    JLabel password ; JTextField password_
+    JLabel login as an Admin ; JTextField Admin_
+    JLabel adminWorksIfYouAreAdmin
+}
+
+loginPanel ..> User
+
+class User{
+    String id, name, firstName, password
+    Vector<String> borrowed
+    boolean isAdmin, admin
+    /'isAdmin is from the DB while admin says if
+      the user is logged in as an admin '/
+}
+
+User ..> Users
+
+class Users{
+    add()
+    delete(String id)
+    edit()
+}
+
+class UserPanel{
+    JLabel name
+    JLabel Borrowed
+    JButton search
+    JButton delete , edit
+}
+
+UserPanel ..> User
+UserPanel ..> SearchLabel
+
+
+class SearchLabel{
+    JTextField searchBook
+}
+
+SearchLabel ..> Books
+
+class BookPanel{
+    JLabel title, title_
+    JLabel year, year_
+    JLabel author , author_
+    JLabel remaining , remaining_
+    if (Admin) JButton delete / edit
+}
+
+BookPanel ..> Book
+
+class Book{
+    int id , year , remaining
+    String title , author
+}
+
+Book ..> Books
+
+
+class AdminPanel{
+    JButton search
+    JButton addBook
+    JButton UserDetails
+    JButton addUser
+}
+
+AdminPanel ..> AddBookPanel
+AdminPanel ..> AddUserPanel
+
+class AddBookPanel {
+}
+
+AddBookPanel ..> Books
+
+class AddUserPanel{
+}
+
+AddUserPanel ..> Users
+
+
+class Books{
+    add()
+    edit(id)
+    delete(id)
+}
+
+
+@enduml
+
+/'
+abstract class AbstractList
+abstract AbstractCollection
+interface List
+interface Collection
+
+List <|-- AbstractList
+Collection <|-- AbstractCollection
+
+Collection <|- List
+AbstractCollection <|- AbstractList
+AbstractList <|-- ArrayList
+
+class ArrayList {
+Object[] elementData
+size()
+}
+
+enum TimeUnit {
+DAYS
+HOURS
+MINUTES
+}
+'/
