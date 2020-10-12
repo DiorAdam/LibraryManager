@@ -25,24 +25,36 @@ class Users{
     edit()
 }
 
-class UserPanel{
-    JLabel name
+class UserInfoPanel{
+    JLabel name , email ...
     JLabel Borrowed
-    JButton search
     JButton delete , edit
 }
 
-UserPanel ..> User
-UserPanel ..> SearchLabel
+UserInfoPanel ..> User
 
+class UserPanel extends JTabbedPane{
 
-class SearchLabel{
-    JTextField searchBook
+    SearchPanel search
+    UserInfoPanel UI
+
 }
 
-SearchLabel ..> Books
+UserPanel ..> UserInfoPanel
+UserPanel ..> SearchPanel
 
-class BookPanel{
+
+class SearchPanel{
+    JTextField search
+    JButton searchBook , searchUser
+}
+
+SearchPanel ..> Books
+SearchPanel ..> Users
+SearchPanel ..> UserInfoPanel
+SearchPanel ..> BookInfoPanel
+
+class BookInfoPanel{
     JLabel title, title_
     JLabel year, year_
     JLabel author , author_
@@ -50,7 +62,7 @@ class BookPanel{
     if (Admin) JButton delete / edit
 }
 
-BookPanel ..> Book
+BookInfoPanel ..> Book
 
 class Book{
     int id , year , remaining
@@ -60,22 +72,27 @@ class Book{
 Book ..> Books
 
 
-class AdminPanel{
-    JButton search
-    JButton addBook
-    JButton UserDetails
-    JButton addUser
+class AdminPanel extends JTabbedPane{
+    JPanel searchPanel
+    JPanel addBook
+    JPanel addUser
 }
 
 AdminPanel ..> AddBookPanel
 AdminPanel ..> AddUserPanel
+AdminPanel ..> SearchPanel
 
 class AddBookPanel {
+    int id , year , remaining
+    String title , author
 }
 
 AddBookPanel ..> Books
 
 class AddUserPanel{
+    String id, name, firstName, password
+    Vector<String> borrowed
+    boolean isAdmin
 }
 
 AddUserPanel ..> Users
