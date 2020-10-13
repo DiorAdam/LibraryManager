@@ -1,13 +1,13 @@
 @startuml
 
-class loginPanel{
+class LoginPanel{
     JLabel id ; JTextField id_
     JLabel password ; JTextField password_
     JLabel login as an Admin ; JTextField Admin_
     JLabel adminWorksIfYouAreAdmin
 }
 
-loginPanel ..> User
+LoginPanel ..> User
 
 class User{
     String id, name, firstName, password
@@ -103,6 +103,16 @@ class Books{
     edit(id)
     delete(id)
 }
+
+class BigPanel{
+    LoginPanel lin
+    UserPanel usr
+    AdMinPanel adm
+
+}
+BigPanel ..> LoginPanel
+BigPanel ..> UserPanel
+BigPanel ..> AdminPanel
 
 
 @enduml
