@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import java.sql.ResultSet;
 
 
@@ -68,8 +67,8 @@ public class Users {
     }
 
     public String[] select (String email){
-        String sql = "Select name, firstName from UsersTab where email = ?";
-        String[] ans = new String[2];
+        String sql = "Select name, firstName, birthDay from UsersTab where email = ?";
+        String[] ans = new String[3];
 
         try (Connection conn = this.connect();
              PreparedStatement stmt = conn.prepareStatement(sql))
@@ -79,6 +78,7 @@ public class Users {
 
             ans[0] = rs.getString("name");
             ans[1] = rs.getString("firstName");
+            ans[2] = rs.getString("birthDay");
         }
         catch(Exception e){
             System.err.println(e.getMessage());
@@ -86,13 +86,36 @@ public class Users {
         return ans;
     }
 
+    public void edit(String email, int UserId, String name, String firstName, String password, String birthday){
+        String sql = "Update UsersTab Set UserId = ? , name = ? , firstName = ?, password = ? , birthday = ? Where email = ?";
+
+        try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, UserId);
+            stmt.setString(2, name);
+            stmt.setString(3, firstName);
+            stmt.setString(4, password);
+            stmt.setString(5, birthday);
+            stmt.setString(6, email);
+
+            stmt.executeUpdate();
+        }
+        catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+    }
+
     public static void main(String[] args){
+        /*
         Users a = new Users();
         //a.add(2, "ab", "ccc", "ab.ccc@email.com");
-        String[] name = a.select("ab.ccc@email.com");
-        System.out.println(name[0] + "  " + name[1]);
-        a.del(2);
+        String[] name ;
+        //System.out.println(name[0] + "  " + name[1]);
+        //a.del(2);
+
+        a.edit("ab.ccc@email.com", 19, null, "byJoystick", "XxunknownxX", "2000-9-30");
         name = a.select("ab.ccc@email.com");
-        System.out.println(name[0] + "  " + name[1]);
+        System.out.println(name[0] + "  " + name[1] + "  " + name[2]);
+        */
+
     }
 }
