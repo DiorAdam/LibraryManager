@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 
 
 public class Users {
-    String url;
+    final private String url;
     public Users(){
         url = "jdbc:sqlite:"+"D:\\k1gilo\\ST5_capteurs\\TP_DB\\TP_DB.db";
     }
@@ -26,12 +26,12 @@ public class Users {
         return conn;
     }
 
-    public void add(Integer UserId, String name, String firstName, String email) {
-        String sql = "INSERT INTO UsersTab(userId, name, firstName, email) VALUES(?,?,?,?)";
+    public void add(Integer UserID, String name, String firstName, String email) {
+        String sql = "INSERT INTO UsersTab(userID, name, firstName, email) VALUES(?,?,?,?)";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
 
-            stmt.setInt(1, UserId);
+            stmt.setInt(1, UserID);
             stmt.setString(2, name);
             stmt.setString(3, firstName);
             stmt.setString(4, email);
@@ -54,11 +54,11 @@ public class Users {
         }
     }
 
-    public void del (int i){
+    public void del (int userID){
         String sql = "Delete from UsersTab where UserID = ?";
 
         try ( Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setInt(1, i);
+            stmt.setInt(1, userID);
             stmt.executeUpdate();
         }
         catch (Exception e){
@@ -86,11 +86,11 @@ public class Users {
         return ans;
     }
 
-    public void edit(String email, int UserId, String name, String firstName, String password, String birthday){
-        String sql = "Update UsersTab Set UserId = ? , name = ? , firstName = ?, password = ? , birthday = ? Where email = ?";
+    public void edit(String email, int UserID, String name, String firstName, String password, String birthday){
+        String sql = "Update UsersTab Set UserID = ? , name = ? , firstName = ?, password = ? , birthday = ? Where email = ?";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setInt(1, UserId);
+            stmt.setInt(1, UserID);
             stmt.setString(2, name);
             stmt.setString(3, firstName);
             stmt.setString(4, password);

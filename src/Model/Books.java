@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 
 
 public class Books {
-    String url;
+    private String url;
 
     public Books(){
         this.url = "jdbc:sqlite:"+"D:\\k1gilo\\ST5_capteurs\\TP_DB\\TP_DB.db";
@@ -31,7 +31,7 @@ public class Books {
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
 
-            stmt.setInt(1, (Integer) params.get("bookId"));
+            stmt.setInt(1, (Integer) params.get("bookID"));
             stmt.setString(2, (String) params.get("title"));
             stmt.setString(3, (String) params.get("author"));
             stmt.setString(4, params.get("year") + "");
@@ -43,11 +43,11 @@ public class Books {
         }
     }
 
-    public void del(int bookId){
-        String sql = "Delete from BooksTab where bookId = ?";
+    public void del(int bookID){
+        String sql = "Delete from BooksTab where bookID = ?";
 
         try ( Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setInt(1, bookId);
+            stmt.setInt(1, bookID);
             stmt.executeUpdate();
         }
         catch (Exception e){
@@ -77,7 +77,7 @@ public class Books {
     }
 
     public void edit(HashMap<String, Object> params){
-        String sql = "Update BooksTab Set title = ? , author = ? , year = ?, remaining = ? Where bookId = ?";
+        String sql = "Update BooksTab Set title = ? , author = ? , year = ?, remaining = ? Where bookID = ?";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1,  params.get("title") + "");
@@ -85,7 +85,7 @@ public class Books {
             stmt.setString(3,  params.get("year") + "");
             stmt.setString(4, params.get("remaining") + "");
 
-            stmt.setInt(5, (Integer) params.get("bookId"));
+            stmt.setInt(5, (Integer) params.get("bookID"));
 
             stmt.executeUpdate();
         }
@@ -101,27 +101,27 @@ public class Books {
 
         HashMap<String, Object> hm = new HashMap<String, Object>();
 
-        hm.put("title", "Cosmos"); hm.put("bookId", 67); hm.put("year", 1987 ); hm.put("author", "Neil DeGrasse"); hm.put("remaining", 5);
+        hm.put("title", "Cosmos"); hm.put("bookID", 67); hm.put("year", 1987 ); hm.put("author", "Neil DeGrasse"); hm.put("remaining", 5);
         b.add(hm);
 
         String[] inf = b.select("Cosmos");
         System.out.println(inf[0] + "\t" + inf[1] + "\t" + inf[2] + "\t");
 
         hm = new HashMap<String, Object>();
-        hm.put("title", "TAOCP"); hm.put("bookId", 93); hm.put("year", 1997 ); hm.put("remaining", 9);
+        hm.put("title", "TAOCP"); hm.put("bookID", 93); hm.put("year", 1997 ); hm.put("remaining", 9);
         //b.add(hm);
         inf = b.select("TAOCP");
         System.out.println(hm.get("title") + "\t" + inf[0] + "\t" + inf[1] + "\t" + inf[2]);
 
         //hm = new HashMap<String, Object>();
-        hm.put("author", "D.Knuth"); hm.put("bookId", 93);
+        hm.put("author", "D.Knuth"); hm.put("bookID", 93);
         b.edit(hm);
         inf = b.select("TAOCP");
         System.out.println("TAOCP" + "   " + inf[0] + "\t" + inf[1] + "\t" + inf[2] );
 
 
 
-        hm.put("bookId", 21); hm.put("title", "OOA");
+        hm.put("bookID", 21); hm.put("title", "OOA");
         b.add(hm);
         inf = b.select("OOA");
         System.out.println(hm.get("title") + "\t" + inf[0] + "\t" + inf[1] + "\t" + inf[2]);
