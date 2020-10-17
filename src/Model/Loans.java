@@ -27,7 +27,7 @@ public class Loans {
     }
 
     public void add( HashMap<String, Object> params){
-        String sql = "INSERT INTO LoansTab(LoanID, UserID, start, end, BookID) Values = (?,?,?,?,?) ";
+        String sql = "INSERT INTO LoansTab(LoanID, UserID, start, end, BookID) Values (?,?,?,?,?) ";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setInt(1, (Integer) params.get("loanID"));
@@ -44,9 +44,9 @@ public class Loans {
 
     public Vector<String[]> selectLoansPerBook(int BookID){
         String sql = "select firstName, name, start, end " +
-                        "FROM LoansTab JOIN UsersTab ON LoansTab.UserID = UsersTab.UserID" +
-                        "Join BooksTab ON LoansTab.BookID = BooksTab.BookID " +
-                        "WHERE BookID = ?";
+                        "FROM LoansTab JOIN UsersTab ON LoansTab.userID = UsersTab.userID " +
+                        "Join BooksTab ON LoansTab.bookID = BooksTab.bookID " +
+                        "WHERE LoansTab.bookID = ?";
 
         Vector<String[]> ans = new Vector<String[]>();
 
@@ -71,9 +71,9 @@ public class Loans {
 
     public Vector<String[]> selectLoansPerUser(int userID){
         String sql = "select title, start, end " +
-                "from LoansTab join UsersTab where LoansTab.UserID = UsersTab.UserID" +
-                "Join BooksTab ON BooksTab.BookID = LoansTab.BookID" +
-                "WHERE userID = ?";
+                "FROM LoansTab join UsersTab ON LoansTab.userID = UsersTab.userID " +
+                "Join BooksTab ON BooksTab.bookID = LoansTab.bookID " +
+                "WHERE LoansTab.userID = ?";
 
         Vector<String[]> ans = new Vector<String[]>();
 

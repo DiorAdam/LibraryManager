@@ -1,7 +1,7 @@
 package Model;
 
 
-
+import java.util.HashMap;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,15 +26,17 @@ public class Users {
         return conn;
     }
 
-    public void add(Integer UserID, String name, String firstName, String email) {
-        String sql = "INSERT INTO UsersTab(userID, name, firstName, email) VALUES(?,?,?,?)";
+    public void add(HashMap<String, Object> params) {
+        String sql = "INSERT INTO UsersTab(userID, name, firstName, email, password, birthday) VALUES(?,?,?,?,?,?)";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
 
-            stmt.setInt(1, UserID);
-            stmt.setString(2, name);
-            stmt.setString(3, firstName);
-            stmt.setString(4, email);
+            stmt.setInt(1, (Integer) params.get("userID"));
+            stmt.setString(2, params.get("name") + "");
+            stmt.setString(3, params.get("firstName") + "");
+            stmt.setString(4, params.get("email") + "");
+            stmt.setString(5, params.get("password") + "");
+            stmt.setString(6, params.get("birthday") + "");
             stmt.executeUpdate();
         }
         catch (SQLException e) {
@@ -86,16 +88,17 @@ public class Users {
         return ans;
     }
 
-    public void edit(String email, int UserID, String name, String firstName, String password, String birthday){
-        String sql = "Update UsersTab Set UserID = ? , name = ? , firstName = ?, password = ? , birthday = ? Where email = ?";
+    public void edit(HashMap<String, Object> params){
+        String sql = "Update UsersTab Set email = ? , name = ? , firstName = ?, password = ? , birthday = ? Where UserID = ?";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setInt(1, UserID);
-            stmt.setString(2, name);
-            stmt.setString(3, firstName);
-            stmt.setString(4, password);
-            stmt.setString(5, birthday);
-            stmt.setString(6, email);
+            stmt.setInt(6, (Integer) params.get("userID"));
+            stmt.setString(1, params.get("email") + "");
+            stmt.setString(2, params.get("name") + "");
+            stmt.setString(3, params.get("firstName") + "");
+            stmt.setString(4, params.get("password") + "");
+            stmt.setString(5, params.get("birthday") + "");
+
 
             stmt.executeUpdate();
         }
@@ -103,19 +106,20 @@ public class Users {
             System.err.println(e.getMessage());
         }
     }
-
+    /*
     public static void main(String[] args){
-        /*
-        Users a = new Users();
-        //a.add(2, "ab", "ccc", "ab.ccc@email.com");
-        String[] name ;
-        //System.out.println(name[0] + "  " + name[1]);
-        //a.del(2);
+        Users u = new Users();
 
-        a.edit("ab.ccc@email.com", 19, null, "byJoystick", "XxunknownxX", "2000-9-30");
-        name = a.select("ab.ccc@email.com");
-        System.out.println(name[0] + "  " + name[1] + "  " + name[2]);
-        */
+
+        HashMap<String, Object > params = new HashMap<String, Object>();
+        params.put("userID", 3);
+        params.put("name", "Anne"); params.put("firstName", "Raby");
+
+        params.put("password", "joyful"); params.put("birthday", "1986-3-8"); params.put("email", "RabyAnne@joymail.com");
+        u.add(params);
+
 
     }
+    */
+
 }

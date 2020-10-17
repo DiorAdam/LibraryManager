@@ -94,15 +94,16 @@ public class Books {
         }
     }
 
-
+    /*
     public static void main(String[] args){
-        /*
+
         Books b = new Books();
 
         HashMap<String, Object> hm = new HashMap<String, Object>();
 
-        hm.put("title", "Cosmos"); hm.put("bookID", 67); hm.put("year", 1987 ); hm.put("author", "Neil DeGrasse"); hm.put("remaining", 5);
-        b.add(hm);
+        hm.put("title", "Jazbu"); hm.put("bookID", 1); hm.put("year", 1890 );
+        hm.put("author", "C.A.B"); hm.put("remaining", 10);
+        b.edit(hm);
 
         String[] inf = b.select("Cosmos");
         System.out.println(inf[0] + "\t" + inf[1] + "\t" + inf[2] + "\t");
@@ -129,7 +130,7 @@ public class Books {
         b.edit(hm);
         inf = b.select("OOA");
         System.out.println(hm.get("title") + "\t" + inf[0] + "\t" + inf[1] + "\t" + inf[2]);
-        */
-    }
 
+    }
+     */
 }
