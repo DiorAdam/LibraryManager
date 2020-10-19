@@ -68,9 +68,9 @@ public class Users {
         }
     }
 
-    public String[] select (String email){
-        String sql = "Select name, firstName, birthDay from UsersTab where email = ?";
-        String[] ans = new String[3];
+    public HashMap<String, Object> select (String email){
+        String sql = "Select * from UsersTab where email = ?";
+        HashMap<String, Object> ans = new HashMap<String, Object>();
 
         try (Connection conn = this.connect();
              PreparedStatement stmt = conn.prepareStatement(sql))
@@ -78,9 +78,12 @@ public class Users {
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
 
-            ans[0] = rs.getString("name");
-            ans[1] = rs.getString("firstName");
-            ans[2] = rs.getString("birthDay");
+            ans.put("userID", rs.getInt("userID"));
+            ans.put("name", rs.getString("name"));
+            ans.put("firstName", rs.getString("firstName"));
+            ans.put("birthday", rs.getString("birthday"));
+            ans.put("password", rs.getString("password"));
+            ans.put("isAdmin", rs.getBoolean("isAdmin"));
         }
         catch(Exception e){
             System.err.println(e.getMessage());
@@ -88,16 +91,43 @@ public class Users {
         return ans;
     }
 
+
+    public HashMap<String, Object> select (int userID){
+        String sql = "Select * from UsersTab where userID = ?";
+        HashMap<String, Object> ans = new HashMap<String, Object>();
+
+        try (Connection conn = this.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+
+            ans.put("email", rs.getString("email"));
+            ans.put("name", rs.getString("name"));
+            ans.put("firstName", rs.getString("firstName"));
+            ans.put("birthday", rs.getString("birthday"));
+            ans.put("password", rs.getString("password"));
+            ans.put("isAdmin", rs.getBoolean("isAdmin"));
+        }
+        catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+        return ans;
+    }
+
+
     public void edit(HashMap<String, Object> params){
-        String sql = "Update UsersTab Set email = ? , name = ? , firstName = ?, password = ? , birthday = ? Where UserID = ?";
+        String sql = "Update UsersTab Set email = ? , name = ? , firstName = ?, " +
+                    "password = ? , birthday = ? , isAdmin = ?  Where userID = ?";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setInt(6, (Integer) params.get("userID"));
+            stmt.setInt(7, (Integer) params.get("userID"));
             stmt.setString(1, params.get("email") + "");
             stmt.setString(2, params.get("name") + "");
             stmt.setString(3, params.get("firstName") + "");
             stmt.setString(4, params.get("password") + "");
             stmt.setString(5, params.get("birthday") + "");
+            stmt.setBoolean(6, (Boolean) params.get("isAdmin"));
 
 
             stmt.executeUpdate();
