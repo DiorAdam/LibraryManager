@@ -13,10 +13,12 @@ public class Book {
         bTable = new Books();
     }
 
-    public void setBook(){
+    public boolean setBook(){
         HashMap<String, Object> hm = bTable.select(this.title);
+        if (hm.size()==0) return false;
         this.author = hm.get("author") + ""; this.remaining = Integer.parseInt(hm.get("remaining") + "");
         this.year = Integer.parseInt(hm.get("year") + ""); this.bookID = (Integer) hm.get("userID");
+        return true;
     }
 
     private void setBook(int bookID_){

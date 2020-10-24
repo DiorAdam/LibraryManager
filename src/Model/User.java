@@ -9,13 +9,14 @@ public class User {
     private String password;
     Users uTable;
 
-    public User(String email_){
+    public User(String email_, String password_){
         email = email_;
+        password = password_;
         uTable = new Users();
     }
 
     public boolean setUser(){
-        HashMap<String, Object> hm = uTable.select(this.email);
+        HashMap<String, Object> hm = uTable.select(this.email, this.password);
         if (hm.size()==0) return false;
         this.userID = (Integer) hm.get("userID");
         this.name = hm.get("name")+""; this.firstName = hm.get("firstName") + "";

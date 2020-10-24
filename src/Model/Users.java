@@ -68,14 +68,15 @@ public class Users {
         }
     }
 
-    public HashMap<String, Object> select (String email){
-        String sql = "Select * from UsersTab where email = ?";
+    public HashMap<String, Object> select (String email, String password){
+        String sql = "Select * from UsersTab where email = ? AND password = ?";
         HashMap<String, Object> ans = new HashMap<String, Object>();
 
         try (Connection conn = this.connect();
              PreparedStatement stmt = conn.prepareStatement(sql))
         {
             stmt.setString(1, email);
+            stmt.setString(2, password);
             ResultSet rs = stmt.executeQuery();
 
             ans.put("userID", rs.getInt("userID"));

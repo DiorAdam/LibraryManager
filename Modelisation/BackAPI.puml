@@ -1,0 +1,35 @@
+@startuml
+
+class Users{
+    void add(HashMap<String, Object)
+    HashMap<String, Object> select( int userID )
+    HashMap<String, Object> select( String email )
+    void del( int userID )
+    void edit (HashMap<String, Object> params)
+}
+
+
+class User{
+    int userID
+    String name, firstName, email, birthday
+    boolean isAdmin
+
+}
+
+class Books{
+    void add(HashMap<String, Object)
+    HashMap<String, Object> select( int bookID )
+    HashMap<String, Object> select( String title )
+    void del( int bookID )
+    void edit (HashMap<String, Object> params)
+}
+
+class Book{
+
+}
+
+class Loans{
+
+}
+
+@enduml

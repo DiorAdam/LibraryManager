@@ -124,5 +124,4 @@ public class Loans {
             System.err.println(e.getMessage());
         }
     }
-
 }
