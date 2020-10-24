@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.HashMap;
+import java.util.Vector;
 
 public class User {
     int userID;
@@ -39,5 +40,10 @@ public class User {
 
     public void delUser(){
         uTable.del(this.userID);
+    }
+
+    Vector<String[]> getLoans(){
+        Loans lTable = new Loans();
+        return lTable.selectLoansPerUser(this.userID);
     }
 }

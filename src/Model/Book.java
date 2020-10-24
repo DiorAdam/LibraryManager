@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.HashMap;
+import java.util.Vector;
 
 public class Book {
     Integer bookID;
@@ -35,4 +36,9 @@ public class Book {
      public void delBook(HashMap<String, Object> params){
         bTable.del(this.bookID);
      }
+
+     public Vector<String[]> getLoans(){
+        Loans lTable = new Loans();
+        return lTable.selectLoansPerBook(this.bookID);
+    }
 }

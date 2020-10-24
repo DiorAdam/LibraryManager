@@ -3,18 +3,24 @@
 class Users{
     void add(HashMap<String, Object)
     HashMap<String, Object> select( int userID )
-    HashMap<String, Object> select( String email )
+    HashMap<String, Object> select( String email, String password)
     void del( int userID )
     void edit (HashMap<String, Object> params)
 }
 
 
 class User{
+    Users uTable
     int userID
     String name, firstName, email, birthday
     boolean isAdmin
-
+    boolean setUser(String email, String password)
+    void delUser()
+    void editUser(HashMap<String, Object> params)
+    Vector<String[]> getLoans()
 }
+User ..> Users
+User ..> Loans
 
 class Books{
     void add(HashMap<String, Object)
@@ -25,11 +31,24 @@ class Books{
 }
 
 class Book{
-
+    Books bTable
+    int bookID
+    String title, author
+    int year, remaining
+    boolean setBook(String title)
+    void delBook()
+    void editBook(HashMap<String, Object> params)
+    Vector<String[]> getLoans()
 }
+Book ..> Books
+Book ..> Loans
 
 class Loans{
-
+    void add(HashMap<String, Object> params)
+    Vector<String[]> selectLoansPerBook(int bookID)
+    Vector<String[]> selectLoansPerUser(int userID)
+    void edit(HashMap<String, Object> params)
 }
+
 
 @enduml
