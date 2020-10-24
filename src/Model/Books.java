@@ -55,10 +55,10 @@ public class Books {
         }
     }
 
-    public String[] select (String title){
+    public HashMap<String, Object> select (String title){
         String sql = "Select author, year, remaining From BooksTab where title = ?";
 
-        String[] ans = new String[3];
+        HashMap<String, Object> ans = new HashMap<String, Object>();
 
         try (Connection conn = this.connect();
              PreparedStatement stmt = conn.prepareStatement(sql))
@@ -66,15 +66,40 @@ public class Books {
             stmt.setString(1, title);
             ResultSet rs = stmt.executeQuery();
 
-            ans[0] = rs.getString("author")  ;
-            ans[1] = rs.getString("year") ;
-            ans[2] = rs.getString("remaining") ;
+            ans.put("bookID", rs.getInt("bookID"));
+            ans.put("author", rs.getString("author")) ;
+            ans.put("year", rs.getString("year"));
+            ans.put("remaining", rs.getString("remaining")) ;
         }
         catch(Exception e){
             System.err.println(e.getMessage());
         }
         return ans;
     }
+
+    public HashMap<String, Object> select (int bookID){
+        String sql = "Select author, year, remaining From BooksTab where bookID = ?";
+
+        HashMap<String, Object> ans = new HashMap<String, Object>();
+
+        try (Connection conn = this.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setInt(1, bookID);
+            ResultSet rs = stmt.executeQuery();
+
+            ans.put("title", rs.getString("title"));
+            ans.put("author", rs.getString("author")) ;
+            ans.put("year", rs.getString("year"));
+            ans.put("remaining", rs.getString("remaining")) ;
+        }
+        catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+        return ans;
+    }
+
+
 
     public void edit(HashMap<String, Object> params){
         String sql = "Update BooksTab Set title = ? , author = ? , year = ?, remaining = ? Where bookID = ?";

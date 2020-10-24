@@ -7,14 +7,15 @@ public class User {
     String name, firstName, email, birthday;
     boolean isAdmin;
     private String password;
+    Users uTable;
 
     public User(String email_){
         email = email_;
+        uTable = new Users();
     }
 
     public boolean setUser(){
-        Users u = new Users();
-        HashMap<String, Object> hm = u.select(this.email);
+        HashMap<String, Object> hm = uTable.select(this.email);
         if (hm.size()==0) return false;
         this.userID = (Integer) hm.get("userID");
         this.name = hm.get("name")+""; this.firstName = hm.get("firstName") + "";
@@ -31,9 +32,11 @@ public class User {
     }
 
     public void editUser(HashMap<String, Object> params){
-        Users u = new Users();
-        u.edit(params);
+        uTable.edit(params);
         this.setUser(this.userID);
     }
 
+    public void delUser(){
+        uTable.del(this.userID);
+    }
 }
