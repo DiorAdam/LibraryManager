@@ -7,12 +7,12 @@ import java.awt.*;
 
 public class AppFrame extends basicFrame{
     JPanel big;
-    LogSignInPanel log;
+    LogInSignUpPanel log;
 
     public AppFrame(){
         this.getContentPane().setBackground(new Color(150,150,150));
         big = new JPanel();
-        log = new LogSignInPanel();
+        log = new LogInSignUpPanel();
         big.add(log);
     }
 

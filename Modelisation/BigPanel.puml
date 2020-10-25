@@ -5,10 +5,10 @@ class BigPanel{
     this.add(logSignInPanel)
     this.add(navPanel)
 }
-BigPanel ..> logSignInPanel
+BigPanel ..> logInSignUpPanel
 BigPanel ..> navPanel
 
-class logSignInPanel extends JSplitPane{
+class logInSignUpPanel extends JSplitPane{
     JPanel logIn
     JTextField email
     JPasswordField password

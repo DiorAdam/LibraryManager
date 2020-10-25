@@ -13,33 +13,34 @@ import javax.swing.JLabel;
 import javax.swing.*;
 import java.awt.*;
 
-public class LogSignInPanel extends JSplitPane{
+public class LogInSignUpPanel extends JSplitPane{
     JPanel left, right;
-    JButton logIn, signIn;
+    JButton logIn, signUp;
     JLabel emailLeft, emailRight, name, firstName, passwordLeft, passwordRight, birthday, wrongInputLeft, wrongInputRight;
     JPasswordField passwordLeft_, passwordRight_;
     JTextField emailLeft_, emailRight_, name_, firstName_, birthday_;
-    public LogSignInPanel(){
+    public LogInSignUpPanel(){
 
         this.setDividerSize(20); this.setDividerLocation(300);
         this.setOneTouchExpandable(true);
         left = new basicPanel(); right = new basicPanel();
-        logIn = new basicButton(" log In "); signIn = new basicButton(" Sign In ");
 
 
-        emailLeft = new basicLabel(" Email "); emailRight = new basicLabel(" Email ");
-
-        name = new basicLabel(" Name "); firstName = new basicLabel(" First Name ");
-        passwordLeft = new basicLabel(" Password "); birthday = new basicLabel(" Birthday (YYYY-MM-DD) ");
-         passwordRight = new basicLabel(" Password ");
+        emailLeft = new basicLabel(" Email "); emailLeft_ = new basicTextField();
+        passwordLeft = new basicLabel(" Password "); passwordLeft_ = new JPasswordField();
+        passwordLeft_.setBackground(new Color(240,240,240));
+        logIn = new basicButton(" log In ");
         wrongInputLeft = new basicLabel(""); wrongInputLeft.setForeground(Color.RED);
+
+        name = new basicLabel(" Name "); name_ = new basicTextField();
+        firstName = new basicLabel(" First Name "); firstName_ = new basicTextField();
+        birthday = new basicLabel(" Birthday (YYYY-MM-DD) "); birthday_ = new basicTextField();
+        emailRight = new basicLabel(" Email "); emailRight_ = new basicTextField();
+        passwordRight = new basicLabel(" Password "); passwordRight_ = new JPasswordField();
+        passwordRight_.setBackground(new Color(240,240,240));
+        signUp = new basicButton(" Sign Up ");
         wrongInputRight = new basicLabel(""); wrongInputRight.setForeground(Color.RED);
 
-        passwordLeft_ = new JPasswordField(); passwordRight_ = new JPasswordField();
-        passwordLeft_.setBackground(new Color(240,240,240));
-        passwordRight_.setBackground(new Color(240,240,240));
-        emailLeft_ = new basicTextField(); emailRight_ = new basicTextField(); name_ = new basicTextField();
-        firstName_ = new basicTextField(); birthday_ = new basicTextField();
 
 
         this.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
@@ -59,7 +60,7 @@ public class LogSignInPanel extends JSplitPane{
         right.add(birthday); right.add(birthday_);
         right.add(emailRight); right.add(emailRight_);
         right.add(passwordRight); right.add(passwordRight_);
-        right.add(signIn);  right.add(wrongInputRight);
+        right.add(signUp);  right.add(wrongInputRight);
     }
 
 
