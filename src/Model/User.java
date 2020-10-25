@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class User {
     int userID;
-    String name, firstName, email, birthday;
+    public String name, firstName, email, birthday;
     boolean isAdmin;
     private String password;
     Users uTable;
@@ -21,7 +21,7 @@ public class User {
         if (hm.size()==0) return false;
         this.userID = (Integer) hm.get("userID");
         this.name = hm.get("name")+""; this.firstName = hm.get("firstName") + "";
-        this.birthday = hm.get("birthday")+""; this.isAdmin = (Boolean) hm.get(isAdmin);
+        this.birthday = hm.get("birthday")+""; //this.isAdmin = (Boolean) hm.get(isAdmin);
         return true;
     }
 
@@ -42,7 +42,7 @@ public class User {
         uTable.del(this.userID);
     }
 
-    Vector<String[]> getLoans(){
+    public Vector<String[]> getLoans(){
         Loans lTable = new Loans();
         return lTable.selectLoansPerUser(this.userID);
     }
