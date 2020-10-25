@@ -1,0 +1,26 @@
+@startuml
+
+class BigPanel{
+    this.setLayout(new CardLayout)
+    this.add(logSignInPanel)
+    this.add(navPanel)
+}
+BigPanel ..> logSignInPanel
+BigPanel ..> navPanel
+
+class logSignInPanel extends JSplitPane{
+    JPanel logIn
+    JTextField email
+    JPasswordField password
+
+    JPanel signIn
+
+    this.add(logIn, BorderLayout.WEST)
+    this.add(signIn, BorderLayout.East)
+}
+
+class navPanel extends JTabbedPane{
+
+}
+
+@enduml
