@@ -1,10 +1,10 @@
 package View_Control;
 
 import Model.User;
-import basicGUI.*;
+//import basicGUI.*;
 
 import javax.swing.*;
-import java.awt.*;
+//import java.awt.*;
 
 public class NavPanel extends JTabbedPane {
     UserInfoPanel uiPanel;
@@ -14,5 +14,6 @@ public class NavPanel extends JTabbedPane {
     public NavPanel(BigPanel bp, User u){
         uiPanel = new UserInfoPanel(bp, u);
         this.add("Account", uiPanel);
+        uiPanel.search.addActionListener(new SearchBookControl(this));
     }
 }

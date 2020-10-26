@@ -56,7 +56,7 @@ public class Books {
     }
 
     public HashMap<String, Object> select (String title){
-        String sql = "Select author, year, remaining From BooksTab where title = ?";
+        String sql = "Select bookID, author, year, remaining From BooksTab where title = ?";
 
         HashMap<String, Object> ans = new HashMap<String, Object>();
 

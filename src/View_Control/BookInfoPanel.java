@@ -8,7 +8,7 @@ import basicGUI.*;
 public class BookInfoPanel extends basicPanel{
     basicLabel borrow_;
     public BookInfoPanel(Book b){
-        this.setLayout(new GridLayout(5, 2));
+        this.setLayout(new GridLayout(6, 2));
 
         this.add(new basicLabel("Title")); this.add(new basicLabel(b.title));
         this.add(new basicLabel("Author")); this.add(new basicLabel(b.author));
