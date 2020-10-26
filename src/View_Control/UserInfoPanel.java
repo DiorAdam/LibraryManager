@@ -51,30 +51,4 @@ public class UserInfoPanel extends basicPanel {
         this.add(loans);
 
     }
-/*
-    public void setInfo(User u){
-        //this.getLayout().removeLayoutComponent(loans);
-        loans = new basicPanel();
-
-        name_.setText(u.name); firstName_.setText(u.firstName);
-        birthday_.setText(u.birthday);
-        Vector<String[]> v = u.getLoans();
-        loans.setLayout(new GridLayout(v.size()+5, 3));
-        borrowed = new basicLabel("Borrowed books : ");
-        loans.add(borrowed); loans.add(new basicLabel("")); loans.add(new basicLabel(""));
-        loans.add(new basicLabel("Book Title"));
-        loans.add(new basicLabel("Borrowing date")); loans.add(new basicLabel("Return Date"));
-        for (int i=0; i<v.size(); i++){
-            loans.add(new basicLabel(v.get(i)[0]));
-            loans.add(new basicLabel(v.get(i)[1]));
-            loans.add(new basicLabel(v.get(i)[2]));
-        }
-        search = new basicButton("Search a Book");
-        loans.add(new basicLabel("")); loans.add(search); loans.add(new basicLabel(""));
-        loans.add(new basicLabel("")); loans.add(new basicLabel("")); loans.add(new basicLabel(""));
-        loans.add(new LogOutPanel(bp));
-
-        this.add(loans);
-    }
-**/
 }

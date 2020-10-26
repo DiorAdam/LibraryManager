@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 
@@ -28,6 +29,19 @@ public class Users {
 
     public void add(HashMap<String, Object> params) {
         String sql = "INSERT INTO UsersTab(userID, name, firstName, email, password, birthday) VALUES(?,?,?,?,?,?)";
+
+        if (!params.containsKey("userID")){
+            String sqlID = "Select Max(userID) from UsersTab";
+            try (Connection conn = connect();
+                 Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(sqlID)){
+
+                params.put("userID", rs.getInt(1)+1);
+            }
+            catch(Exception e){
+                System.err.println(e);
+            }
+        }
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
 

@@ -13,7 +13,6 @@ import java.awt.event.*;
 public class LogInSignUpControl implements ActionListener{
     BigPanel bp;
     User loggedUser;
-    static int userID = 200;
 
     public LogInSignUpControl(BigPanel bp_){
         bp = bp_;
@@ -46,7 +45,7 @@ public class LogInSignUpControl implements ActionListener{
         else if ( cmd == "Sign Up"){
             Users uTable = new Users();
             HashMap<String, Object> params = new HashMap<String, Object>();
-            params.put("userID", userID); userID ++;
+
             params.put("name", bp.logSign.name_.getText());
             params.put("firstName", bp.logSign.firstName_.getText());
             params.put("birthday", bp.logSign.birthday_.getText());
