@@ -41,9 +41,9 @@ public class UserInfoPanel extends basicPanel {
             loans.add(new basicLabel(v.get(i)[1]));
             loans.add(new basicLabel(v.get(i)[2]));
         }
-        search_ = new basicTextField(); search = new basicButton("Search a Book");
+        search_ = new basicTextField(); search = new basicButton("Search Book");
 
-        loans.add(search_); loans.add(new basicLabel("")); loans.add(search);
+        loans.add(search_); loans.add(search); loans.add(new basicLabel(""));
         loans.add(new basicLabel("")); loans.add(new basicLabel("")); loans.add(new basicLabel(""));
         loans.add(new LogOutPanel(bp));
 

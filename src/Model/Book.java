@@ -5,8 +5,8 @@ import java.util.Vector;
 
 public class Book {
     Integer bookID;
-    String title, author;
-    Integer remaining, year;
+    public String title, author;
+    public Integer remaining, year;
     Books bTable;
 
     public Book(String title_){
