@@ -9,7 +9,8 @@ import java.awt.*;
 public class UserInfoPanel extends basicPanel {
     basicPanel info, loans;
     basicLabel name, firstName, birthday, borrowed;
-    basicLabel name_, firstName_, birthday_;
+    basicLabel name_, firstName_, birthday_, notFound;
+    basicTextField search_;
     basicButton search;
     BigPanel bp;
 
@@ -40,8 +41,10 @@ public class UserInfoPanel extends basicPanel {
             loans.add(new basicLabel(v.get(i)[1]));
             loans.add(new basicLabel(v.get(i)[2]));
         }
-        search = new basicButton("Search a Book");
-        loans.add(new basicLabel("")); loans.add(search); loans.add(new basicLabel(""));
+        search_ = new basicTextField(); search = new basicButton("Search Book");
+        notFound = new basicLabel(""); notFound.setForeground(Color.RED);
+
+        loans.add(search_); loans.add(search); loans.add(notFound);
         loans.add(new basicLabel("")); loans.add(new basicLabel("")); loans.add(new basicLabel(""));
         loans.add(new LogOutPanel(bp));
 

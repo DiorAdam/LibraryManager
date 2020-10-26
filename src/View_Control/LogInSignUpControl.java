@@ -33,10 +33,10 @@ public class LogInSignUpControl implements ActionListener{
 
             if (loggedUser.setUser()){
                 //bp.userInfo.setInfo(loggedUser);
-                cl.removeLayoutComponent(bp.userInfo);
-                bp.userInfo = new UserInfoPanel(bp, loggedUser);
-                bp.add(bp.userInfo, "UserInfo");
-                cl.show(bp, "UserInfo");
+                cl.removeLayoutComponent(bp.nPanel);
+                bp.nPanel  = new NavPanel(bp, loggedUser);
+                bp.add(bp.nPanel, "Nav");
+                cl.show(bp, "Nav");
             }
             else {
                 bp.logSign.wrongInputLeft.setText("Wrong Input");
@@ -65,10 +65,10 @@ public class LogInSignUpControl implements ActionListener{
 
             loggedUser = new User(params.get("email")+"", params.get("password")+"");
             if (loggedUser.setUser()){
-                cl.removeLayoutComponent(bp.userInfo);
-                bp.userInfo = new UserInfoPanel(bp, loggedUser);
-                bp.add(bp.userInfo, "UserInfo");
-                cl.show(bp, "UserInfo");
+                cl.removeLayoutComponent(bp.nPanel);
+                bp.nPanel = new NavPanel(bp, loggedUser);
+                bp.add(bp.nPanel, "Nav");
+                cl.show(bp, "Nav");
             }
             else {
                 bp.logSign.wrongInputRight.setText("Wrong Input");
