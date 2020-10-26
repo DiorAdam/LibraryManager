@@ -1,9 +1,7 @@
-package View;
+package View_Control;
 
-import Model.User;
 import basicGUI.basicFrame;
 
-import javax.swing.JPanel;
 import java.awt.*;
 
 public class AppFrame extends basicFrame{

@@ -1,8 +1,6 @@
-package View;
+package View_Control;
 
-import java.awt.*;
 import basicGUI.*;
-import java.awt.event.*;
 
 
 public class LogOutPanel extends basicPanel{

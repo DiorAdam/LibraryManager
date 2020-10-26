@@ -1,4 +1,4 @@
-package View;
+package View_Control;
 
 import java.util.Vector;
 import Model.User;
