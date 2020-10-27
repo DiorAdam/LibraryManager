@@ -13,10 +13,10 @@ public class SearchBookControl implements ActionListener {
     }
     public void actionPerformed(ActionEvent evt){
         String cmd = evt.getActionCommand();
-
+        String title = nPanel.uiPanel.search_.getText();
+        Book b = new Book(title);
         if (cmd == "Search Book"){
-            String title = nPanel.uiPanel.search_.getText();
-            Book b = new Book(title);
+
             if (b.setBook()){
                 nPanel.biPanel = new BookInfoPanel(b);
                 nPanel.add(b.title, nPanel.biPanel);
@@ -27,7 +27,12 @@ public class SearchBookControl implements ActionListener {
             }
         }
         else if (cmd == "Borrow"){
+            if (nPanel.biPanel.remaining_ == 0){
+                nPanel.biPanel.borrow_.setText("Out of Stock");
+            }
+            else{
 
+            }
         }
     }
 }

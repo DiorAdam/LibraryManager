@@ -28,12 +28,14 @@ public class Book {
         this.year = Integer.parseInt(hm.get("year") + ""); this.title =  hm.get("title") + "";
     }
 
-    public void editBook(HashMap<String, Object> params){
+    public void editBook(){
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("bookID", this.bookID); params.put("title", this.title);
         bTable.edit(params);
         this.setBook(this.bookID);
     }
 
-     public void delBook(HashMap<String, Object> params){
+     public void delBook(){
         bTable.del(this.bookID);
      }
 
