@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Vector;
 
 public class User {
-    int userID;
+    public int userID;
     public String name, firstName, email, birthday;
     boolean isAdmin;
     private String password;

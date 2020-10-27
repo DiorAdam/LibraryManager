@@ -1,11 +1,8 @@
 package Model;
 
+import java.sql.*;
 import java.util.Vector;
 import java.util.HashMap;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 
 public class Loans {
@@ -27,6 +24,20 @@ public class Loans {
     }
 
     public void add( HashMap<String, Object> params){
+
+        if (!params.containsKey("loanID")){
+            String sqlID = "Select Max(loanID) from LoansTab";
+            try (Connection conn = connect();
+                 Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(sqlID)){
+
+                params.put("loanID", rs.getInt(1)+1);
+            }
+            catch(Exception e){
+                System.err.println(e);
+            }
+        }
+
         String sql = "INSERT INTO LoansTab(LoanID, UserID, start, end, BookID) Values (?,?,?,?,?) ";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
@@ -35,10 +46,13 @@ public class Loans {
             stmt.setInt(5, (Integer) params.get("bookID"));
             stmt.setString(3, params.get("start") + "");
             stmt.setString(4, params.get("end") + "");
+            System.out.println("in Try Loans");
             stmt.executeUpdate();
+            System.out.println("in Try Loans");
         }
         catch(Exception e){
             System.err.println(e.getMessage());
+            System.out.println(params.get("start"));
         }
     }
 
