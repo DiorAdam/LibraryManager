@@ -105,14 +105,16 @@ public class Books {
         String sql = "Update BooksTab Set title = ? , author = ? , year = ?, remaining = ? Where bookID = ?";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
+
             stmt.setString(1,  params.get("title") + "");
             stmt.setString(2, params.get("author") + "");
             stmt.setString(3,  params.get("year") + "");
             stmt.setString(4, params.get("remaining") + "");
-
             stmt.setInt(5, (Integer) params.get("bookID"));
 
+            System.out.println("Updating Books");
             stmt.executeUpdate();
+
         }
         catch(Exception e){
             System.err.println(e.getMessage());
