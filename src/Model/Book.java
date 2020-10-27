@@ -33,7 +33,6 @@ public class Book {
         params.put("bookID", this.bookID); params.put("title", this.title);
         params.put("author", this.author); params.put("remaining", this.remaining+""); params.put("year", this.year + "");
         bTable.edit(params);
-        //this.setBook(this.bookID);
     }
 
      public void delBook(){

@@ -46,13 +46,11 @@ public class Loans {
             stmt.setInt(5, (Integer) params.get("bookID"));
             stmt.setString(3, params.get("start") + "");
             stmt.setString(4, params.get("end") + "");
-            System.out.println("in Try Loans");
+            System.out.println("adding row to Loans");
             stmt.executeUpdate();
-            System.out.println("in Try Loans");
         }
         catch(Exception e){
             System.err.println(e.getMessage());
-            System.out.println(params.get("start"));
         }
     }
 
