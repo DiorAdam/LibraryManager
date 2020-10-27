@@ -8,14 +8,15 @@ import basicGUI.*;
 public class BookInfoPanel extends basicPanel{
     basicTextField returnDate_;
     basicLabel borrow_;
-    int remaining_;
+    basicLabel remaining_;
     public BookInfoPanel(Book b){
         this.setLayout(new GridLayout(6, 2));
 
         this.add(new basicLabel("Title")); this.add(new basicLabel(b.title));
         this.add(new basicLabel("Author")); this.add(new basicLabel(b.author));
         this.add(new basicLabel("Year")); this.add(new basicLabel(b.year+""));
-        this.add(new basicLabel("Remaining")); this.add(new basicLabel(b.remaining+"")); remaining_ = b.remaining;
+        remaining_ = new basicLabel(b.remaining+"");
+        this.add(new basicLabel("Remaining")); this.add(remaining_);
         borrow_ = new basicLabel("");
         this.add(new basicLabel("")); this.add(borrow_);
         basicButton borrow = new basicButton("Borrow"); returnDate_ = new basicTextField();
