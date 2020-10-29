@@ -22,11 +22,6 @@ public class Book {
         return true;
     }
 
-    private void setBook(int bookID_){
-        HashMap<String, Object> hm = bTable.select(this.bookID);
-        this.author = hm.get("author") + ""; this.remaining = Integer.parseInt(hm.get("remaining") + "");
-        this.year = Integer.parseInt(hm.get("year") + ""); this.title =  hm.get("title") + "";
-    }
 
     public void editBook(){
         HashMap<String, Object> params = new HashMap<String, Object>();

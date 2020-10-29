@@ -44,7 +44,7 @@ public class Users {
         }
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
-            System.out.println("Inserting Into UsersTab");
+            System.out.println("Inserting User " + params.get("email") + " Into UsersTab");
 
             stmt.setInt(1, (Integer) params.get("userID"));
             stmt.setString(2, params.get("name") + "");

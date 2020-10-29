@@ -41,12 +41,13 @@ public class Loans {
         String sql = "INSERT INTO LoansTab(LoanID, UserID, start, end, BookID) Values (?,?,?,?,?) ";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
+            System.out.println("Inserting row Into Loans");
             stmt.setInt(1, (Integer) params.get("loanID"));
             stmt.setInt(2, (Integer) params.get("userID"));
             stmt.setInt(5, (Integer) params.get("bookID"));
             stmt.setString(3, params.get("start") + "");
             stmt.setString(4, params.get("end") + "");
-            System.out.println("adding row to Loans");
+
             stmt.executeUpdate();
         }
         catch(Exception e){
@@ -111,6 +112,7 @@ public class Loans {
         String sql = "DELETE from LoansTab where LoanID = ?";
 
         try(Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
+            System.out.println("Deleting Loan(LoanID = " + LoanID + " ) from LoansTab");
             stmt.setInt(1, LoanID);
             stmt.executeUpdate();
         }
@@ -123,6 +125,8 @@ public class Loans {
         String sql = "Update LoansTab Set UserID = ? , start = ? , end = ?, BookID = ? Where LoanID = ?";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
+            System.out.println("Editing table LoansTab");
+
             stmt.setInt(1, (Integer) params.get("UserID"));
             stmt.setString(2, params.get("start") + "");
             stmt.setString(3,  params.get("end") + "");

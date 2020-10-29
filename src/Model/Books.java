@@ -30,6 +30,7 @@ public class Books {
         String sql = "INSERT INTO BooksTab(BookId, title, author, year, remaining) VALUES(?,?,?,?,?)";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
+            System.out.println("Inserting Book " + params.get("title") + " into BooksTab");
 
             stmt.setInt(1, (Integer) params.get("bookID"));
             stmt.setString(2, (String) params.get("title"));
@@ -47,6 +48,7 @@ public class Books {
         String sql = "Delete from BooksTab where bookID = ?";
 
         try ( Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
+            System.out.println("Deleting Book (bookID = " + bookID + ") From BooksTab");
             stmt.setInt(1, bookID);
             stmt.executeUpdate();
         }
@@ -106,6 +108,7 @@ public class Books {
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
 
+            System.out.println("Editing Book(bookID = " + params.get("bookID") + " ) in BooksTab");
             stmt.setString(1,  params.get("title") + "");
             stmt.setString(2, params.get("author") + "");
             stmt.setString(3,  params.get("year") + "");
