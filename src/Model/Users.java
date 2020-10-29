@@ -109,14 +109,14 @@ public class Users {
     }
 
 
-    public HashMap<String, Object> select (int userID){
-        String sql = "Select * from UsersTab where userID = ?";
+    public HashMap<String, Object> select (String email){
+        String sql = "Select * from UsersTab where email = ?";
         HashMap<String, Object> ans = new HashMap<String, Object>();
 
         try (Connection conn = this.connect();
              PreparedStatement stmt = conn.prepareStatement(sql))
         {
-            stmt.setInt(1, userID);
+            stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
 
             ans.put("email", rs.getString("email"));

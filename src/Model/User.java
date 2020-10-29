@@ -16,6 +16,11 @@ public class User {
         uTable = new Users();
     }
 
+    public User(String email_){
+        email = email_;
+        uTable = new Users();
+    }
+
     public boolean setUser(){
         HashMap<String, Object> hm = uTable.select(this.email, this.password);
         if (hm.size()==0) return false;
@@ -25,12 +30,14 @@ public class User {
         return true;
     }
 
-    private void setUser(int ID){
+    public boolean setUser(User ad){
         Users u = new Users();
-        HashMap<String, Object> hm = u.select(ID);
+        HashMap<String, Object> hm = u.select(this.email);
+        if (hm.size()==0 || ! ad.admin) return false;
         this.email = hm.get("email") + "";
         this.name = hm.get("name")+""; this.firstName = hm.get("firstName") + "";
         this.birthday = hm.get("birthday")+""; this.isAdmin = (Boolean) hm.get(isAdmin);
+        return true;
     }
 
     public void editUser(){

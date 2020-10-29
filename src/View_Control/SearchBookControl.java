@@ -17,7 +17,7 @@ public class SearchBookControl implements ActionListener {
         String cmd = evt.getActionCommand();
         String title = nPanel.uiPanel.searchBook_.getText();
         Book b = new Book(title);
-        if (cmd == "Search Book"){
+        if (cmd.equals("Search Book")){
 
             if (b.setBook()){
                 nPanel.biPanel = new BookInfoPanel(this.nPanel, b);
