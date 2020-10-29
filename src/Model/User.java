@@ -6,7 +6,7 @@ import java.util.Vector;
 public class User {
     public int userID;
     public String name, firstName, email, birthday;
-    boolean isAdmin;
+    public boolean isAdmin, admin;
     private String password;
     Users uTable;
 
@@ -21,7 +21,7 @@ public class User {
         if (hm.size()==0) return false;
         this.userID = (Integer) hm.get("userID");
         this.name = hm.get("name")+""; this.firstName = hm.get("firstName") + "";
-        this.birthday = hm.get("birthday")+""; //this.isAdmin = (Boolean) hm.get(isAdmin);
+        this.birthday = hm.get("birthday")+""; this.isAdmin = (Boolean) hm.get(isAdmin);
         return true;
     }
 
@@ -33,9 +33,12 @@ public class User {
         this.birthday = hm.get("birthday")+""; this.isAdmin = (Boolean) hm.get(isAdmin);
     }
 
-    public void editUser(HashMap<String, Object> params){
+    public void editUser(){
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("name", this.name); params.put("firstName", this.firstName);
+        params.put("birthday", this.birthday); params.put("isAdmin", this.isAdmin);
+        params.put("userID", this.userID); params.put("email", this.email); params.put("password", this.password);
         uTable.edit(params);
-        this.setUser(this.userID);
     }
 
     public void delUser(){

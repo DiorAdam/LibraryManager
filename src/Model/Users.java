@@ -44,6 +44,7 @@ public class Users {
         }
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
+            System.out.println("Inserting Into UsersTab");
 
             stmt.setInt(1, (Integer) params.get("userID"));
             stmt.setString(2, params.get("name") + "");
@@ -136,6 +137,8 @@ public class Users {
                     "password = ? , birthday = ? , isAdmin = ?  Where userID = ?";
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
+            System.out.println("Editing table UsersTab");
+
             stmt.setInt(7, (Integer) params.get("userID"));
             stmt.setString(1, params.get("email") + "");
             stmt.setString(2, params.get("name") + "");
@@ -144,27 +147,11 @@ public class Users {
             stmt.setString(5, params.get("birthday") + "");
             stmt.setBoolean(6, (Boolean) params.get("isAdmin"));
 
-
             stmt.executeUpdate();
+
         }
         catch(Exception e){
             System.err.println(e.getMessage());
         }
     }
-    /*
-    public static void main(String[] args){
-        Users u = new Users();
-
-
-        HashMap<String, Object > params = new HashMap<String, Object>();
-        params.put("userID", 3);
-        params.put("name", "Anne"); params.put("firstName", "Raby");
-
-        params.put("password", "joyful"); params.put("birthday", "1986-3-8"); params.put("email", "RabyAnne@joymail.com");
-        u.add(params);
-
-
-    }
-    */
-
 }

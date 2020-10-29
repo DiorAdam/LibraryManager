@@ -31,6 +31,17 @@ public class testDB {
 
         //Testing Loans.del
         //l.del(6);
+        /*
+        Users u = new Users();
+        int[] ID = {1,2,3,4,9,11,13,19,23,200,201};
 
+        for(int userID: ID){
+            HashMap<String,Object> params = u.select(userID);
+            params.put("isAdmin", false);
+            params.put("userID", userID);
+            u.edit(params);
+        }
+
+         */
     }
 }
