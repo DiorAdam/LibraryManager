@@ -10,8 +10,8 @@ public class UserInfoPanel extends basicPanel {
     basicPanel info, loans;
     basicLabel name, firstName, birthday, borrowed;
     basicLabel name_, firstName_, birthday_, notFound;
-    basicTextField search_;
-    basicButton search;
+    basicTextField searchBook_, searchUser_;
+    basicButton searchBook, searchUser;
     BigPanel bp;
 
     public UserInfoPanel(){}
@@ -22,6 +22,7 @@ public class UserInfoPanel extends basicPanel {
         name = new basicLabel("Name : "); name_ = new basicLabel("None");
         firstName = new basicLabel("firstName : "); firstName_ = new basicLabel("None");
         birthday = new basicLabel("Birthday : "); birthday_ = new basicLabel("None");
+
 
         info.setLayout(new GridLayout(3,2));
         info.add(firstName); info.add(firstName_);
@@ -41,10 +42,10 @@ public class UserInfoPanel extends basicPanel {
             loans.add(new basicLabel(v.get(i)[1]));
             loans.add(new basicLabel(v.get(i)[2]));
         }
-        search_ = new basicTextField(); search = new basicButton("Search Book");
+        searchBook_ = new basicTextField(); searchBook = new basicButton("Search Book");
         notFound = new basicLabel(""); notFound.setForeground(Color.RED);
 
-        loans.add(search_); loans.add(search); loans.add(notFound);
+        loans.add(searchBook_); loans.add(searchBook); loans.add(notFound);
         loans.add(new basicLabel("")); loans.add(new basicLabel("")); loans.add(new basicLabel(""));
         loans.add(new LogOutPanel(bp));
 

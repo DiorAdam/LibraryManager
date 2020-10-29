@@ -25,14 +25,16 @@ public class LogInSignUpControl implements ActionListener{
         if (cmd == "Log In"){
 
             String email = bp.logSign.emailLeft_.getText().strip();
-            //System.out.println(email);
             char[] password = bp.logSign.passwordLeft_.getPassword();
             StringBuilder psw = new StringBuilder(password.length);
             for (char c : password) psw.append(c);
             loggedUser = new User(email, psw.toString());
 
             if (loggedUser.setUser()){
-                //bp.userInfo.setInfo(loggedUser);
+                String adm = bp.logSign.admin_.getText();
+                if (adm.equals("yes") && loggedUser.isAdmin) loggedUser.admin = true;
+                else loggedUser.admin = false;
+
                 cl.removeLayoutComponent(bp.nPanel);
                 bp.nPanel  = new NavPanel(bp, loggedUser);
                 bp.add(bp.nPanel, "Nav");
@@ -65,6 +67,7 @@ public class LogInSignUpControl implements ActionListener{
 
             loggedUser = new User(params.get("email")+"", params.get("password")+"");
             if (loggedUser.setUser()){
+                loggedUser.admin = false;
                 cl.removeLayoutComponent(bp.nPanel);
                 bp.nPanel = new NavPanel(bp, loggedUser);
                 bp.add(bp.nPanel, "Nav");

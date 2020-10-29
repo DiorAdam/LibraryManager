@@ -28,7 +28,7 @@ public class Users {
     }
 
     public void add(HashMap<String, Object> params) {
-        String sql = "INSERT INTO UsersTab(userID, name, firstName, email, password, birthday) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO UsersTab(userID, name, firstName, email, password, birthday,isAdmin) VALUES(?,?,?,?,?,?,?)";
 
         if (!params.containsKey("userID")){
             String sqlID = "Select Max(userID) from UsersTab";
@@ -52,6 +52,7 @@ public class Users {
             stmt.setString(4, params.get("email") + "");
             stmt.setString(5, params.get("password") + "");
             stmt.setString(6, params.get("birthday") + "");
+            stmt.setBoolean(7,false);
             stmt.executeUpdate();
         }
         catch (SQLException e) {

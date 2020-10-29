@@ -17,6 +17,6 @@ public class NavPanel extends JTabbedPane {
         bp = bp_; u = u_;
         uiPanel = new UserInfoPanel(bp, u);
         this.add("Account", uiPanel);
-        uiPanel.search.addActionListener(new SearchBookControl(this));
+        uiPanel.searchBook.addActionListener(new SearchBookControl(this));
     }
 }

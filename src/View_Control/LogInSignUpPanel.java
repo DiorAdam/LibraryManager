@@ -18,7 +18,7 @@ public class LogInSignUpPanel extends JSplitPane{
     JButton logIn, signUp;
     JLabel emailLeft, emailRight, name, firstName, passwordLeft, passwordRight, birthday, wrongInputLeft, wrongInputRight;
     JPasswordField passwordLeft_, passwordRight_;
-    JTextField emailLeft_, emailRight_, name_, firstName_, birthday_;
+    JTextField emailLeft_, emailRight_, name_, firstName_, birthday_, admin_;
     public LogInSignUpPanel(){
 
         this.setDividerSize(20); this.setDividerLocation(300);
@@ -29,6 +29,7 @@ public class LogInSignUpPanel extends JSplitPane{
         emailLeft = new basicLabel(" Email "); emailLeft_ = new basicTextField();
         passwordLeft = new basicLabel(" Password "); passwordLeft_ = new JPasswordField();
         passwordLeft_.setBackground(new Color(240,240,240));
+        admin_ = new basicTextField();
         logIn = new basicButton("Log In");
         wrongInputLeft = new basicLabel(""); wrongInputLeft.setForeground(Color.RED);
 
@@ -50,7 +51,7 @@ public class LogInSignUpPanel extends JSplitPane{
         left.add(emailLeft); left.add(emailLeft_);
         left.add(passwordLeft); left.add(passwordLeft_);
         left.add(new JLabel()); left.add(new JLabel());
-        left.add(new JLabel()); left.add(new JLabel());
+        left.add(new basicLabel("Login as Admin (Only if you're an admin)")); left.add(admin_);
         left.add(new JLabel()); left.add(new JLabel());
         left.add(logIn); left.add(wrongInputLeft);
 
@@ -62,6 +63,4 @@ public class LogInSignUpPanel extends JSplitPane{
         right.add(passwordRight); right.add(passwordRight_);
         right.add(signUp);  right.add(wrongInputRight);
     }
-
-
 }
