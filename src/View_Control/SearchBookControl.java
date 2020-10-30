@@ -3,12 +3,15 @@ package View_Control;
 import Model.Book;
 import Model.Loans;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SearchBookControl implements ActionListener {
     NavPanel nPanel;
+    EditBookPanel ebPanel;
+    Book b;
 
     public SearchBookControl(NavPanel nPanel_){
         nPanel = nPanel_;
@@ -16,9 +19,8 @@ public class SearchBookControl implements ActionListener {
     public void actionPerformed(ActionEvent evt){
         String cmd = evt.getActionCommand();
         String title = nPanel.uiPanel.searchBook_.getText();
-        Book b = new Book(title);
         if (cmd.equals("Search Book")){
-
+            b = new Book(title);
             if (b.setBook()){
                 nPanel.biPanel = new BookInfoPanel(this.nPanel, b);
                 nPanel.add(b.title, nPanel.biPanel);
@@ -29,7 +31,44 @@ public class SearchBookControl implements ActionListener {
                 System.out.println("Book not found");
             }
         }
-        else if (cmd == "Borrow"){
+
+        else if (cmd.equals("Search/Add Book")){
+            b = (title.length()>0)? new Book(title) : null;
+            if (b == null || b.setBook()){
+                ebPanel = new EditBookPanel(this.nPanel, b);
+                int idx = nPanel.indexOfTab("Edit Book");
+                if ( idx >= 0) {
+                    nPanel.add(b.title, ebPanel);
+                }
+                else{
+                    nPanel.setComponentAt(idx, ebPanel);
+                }
+                nPanel.uiPanel.BookNotFound.setText("Book Page Successfully opened");
+            }
+            else{
+                nPanel.uiPanel.BookNotFound.setText("Book Not Found");
+                System.out.println("Book not found");
+            }
+        }
+
+        else if (cmd.equals("editBook")){
+            try {
+                b.title = ebPanel.title_.getText();
+                b.author = ebPanel.author_.getText();
+                b.year = Integer.parseInt(ebPanel.year_.getText());
+                b.remaining = Integer.parseInt(ebPanel.remaining_.getText());
+                b.editBook();
+                ebPanel.feedBack.setText("Book successfully updated");
+                ebPanel.setForeground(Color.GREEN);
+            }
+            catch (Exception e){
+                System.err.println(e);
+                ebPanel.feedBack.setText("Error While editing book");
+                ebPanel.feedBack.setForeground(Color.RED);
+            }
+        }
+
+        else if (cmd.equals("Borrow")){
             b.setBook();
             if (b.remaining == 0){
                 nPanel.biPanel.borrow_.setText("Out of Stock");
