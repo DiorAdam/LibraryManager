@@ -59,7 +59,9 @@ public class UserInfoPanel extends basicPanel {
             loans.add(new basicLabel(v.get(i)[1]));
             loans.add(new basicLabel(v.get(i)[2]));
         }
-        searchBook_ = new basicTextField(); searchBook = new basicButton("Search Book");
+        searchBook_ = new basicTextField();
+        if (u.admin) searchBook = new basicButton("Search/Add Book");
+        else searchBook = new basicButton("Search Book");
         BookNotFound = new basicLabel(""); BookNotFound.setForeground(Color.RED);
 
         loans.add(searchBook_); loans.add(searchBook); loans.add(BookNotFound);

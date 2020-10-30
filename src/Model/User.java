@@ -26,17 +26,17 @@ public class User {
         if (hm.size()==0) return false;
         this.userID = (Integer) hm.get("userID");
         this.name = hm.get("name")+""; this.firstName = hm.get("firstName") + "";
-        this.birthday = hm.get("birthday")+""; this.isAdmin = (Boolean) hm.get(isAdmin);
+        this.birthday = hm.get("birthday")+""; this.isAdmin = (Boolean) hm.get("isAdmin");
         return true;
     }
 
     public boolean setUser(User ad){
-        Users u = new Users();
-        HashMap<String, Object> hm = u.select(this.email);
+        Users uTable = new Users();
+        HashMap<String, Object> hm = uTable.select(this.email);
         if (hm.size()==0 || ! ad.admin) return false;
-        this.email = hm.get("email") + "";
+        this.userID = (Integer) hm.get("userID") ; this.password = hm.get("password")+"";
         this.name = hm.get("name")+""; this.firstName = hm.get("firstName") + "";
-        this.birthday = hm.get("birthday")+""; this.isAdmin = (Boolean) hm.get(isAdmin);
+        this.birthday = hm.get("birthday")+""; this.isAdmin = (Boolean) hm.get("isAdmin");
         return true;
     }
 

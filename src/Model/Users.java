@@ -119,7 +119,7 @@ public class Users {
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
 
-            ans.put("email", rs.getString("email"));
+            ans.put("userID", rs.getInt("userID"));
             ans.put("name", rs.getString("name"));
             ans.put("firstName", rs.getString("firstName"));
             ans.put("birthday", rs.getString("birthday"));
