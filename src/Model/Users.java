@@ -28,7 +28,7 @@ public class Users {
     }
 
     public void add(HashMap<String, Object> params) {
-        String sql = "INSERT INTO UsersTab(userID, name, firstName, email, password, birthday) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO UsersTab(userID, name, firstName, email, password, birthday,isAdmin) VALUES(?,?,?,?,?,?,?)";
 
         if (!params.containsKey("userID")){
             String sqlID = "Select Max(userID) from UsersTab";
@@ -52,6 +52,7 @@ public class Users {
             stmt.setString(4, params.get("email") + "");
             stmt.setString(5, params.get("password") + "");
             stmt.setString(6, params.get("birthday") + "");
+            stmt.setBoolean(7,false);
             stmt.executeUpdate();
         }
         catch (SQLException e) {
@@ -108,17 +109,17 @@ public class Users {
     }
 
 
-    public HashMap<String, Object> select (int userID){
-        String sql = "Select * from UsersTab where userID = ?";
+    public HashMap<String, Object> select (String email){
+        String sql = "Select * from UsersTab where email = ?";
         HashMap<String, Object> ans = new HashMap<String, Object>();
 
         try (Connection conn = this.connect();
              PreparedStatement stmt = conn.prepareStatement(sql))
         {
-            stmt.setInt(1, userID);
+            stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
 
-            ans.put("email", rs.getString("email"));
+            ans.put("userID", rs.getInt("userID"));
             ans.put("name", rs.getString("name"));
             ans.put("firstName", rs.getString("firstName"));
             ans.put("birthday", rs.getString("birthday"));

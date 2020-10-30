@@ -9,9 +9,9 @@ import java.awt.*;
 public class UserInfoPanel extends basicPanel {
     basicPanel info, loans;
     basicLabel name, firstName, birthday, borrowed;
-    basicLabel name_, firstName_, birthday_, notFound;
-    basicTextField search_;
-    basicButton search;
+    basicLabel name_, firstName_, birthday_, BookNotFound, UserNotFound;
+    basicTextField searchBook_, searchUser_;
+    basicButton searchBook, searchUser;
     BigPanel bp;
 
     public UserInfoPanel(){}
@@ -23,10 +23,28 @@ public class UserInfoPanel extends basicPanel {
         firstName = new basicLabel("firstName : "); firstName_ = new basicLabel("None");
         birthday = new basicLabel("Birthday : "); birthday_ = new basicLabel("None");
 
-        info.setLayout(new GridLayout(3,2));
-        info.add(firstName); info.add(firstName_);
-        info.add(name); info.add(name_);
-        info.add(birthday); info.add(birthday_);
+        if (u.admin){
+            info.setLayout(new GridLayout(5, 2));
+            info.add(firstName);
+            info.add(firstName_);
+            info.add(name);
+            info.add(name_);
+            info.add(birthday);
+            info.add(birthday_);
+            searchUser_ = new basicTextField(); searchUser = new basicButton("Search User");
+            UserNotFound = new basicLabel(""); UserNotFound.setForeground(Color.RED);
+            info.add(searchUser_); info.add(searchUser);
+            info.add(UserNotFound);
+        }
+        else {
+            info.setLayout(new GridLayout(3, 2));
+            info.add(firstName);
+            info.add(firstName_);
+            info.add(name);
+            info.add(name_);
+            info.add(birthday);
+            info.add(birthday_);
+        }
 
         name_.setText(u.name); firstName_.setText(u.firstName);
         birthday_.setText(u.birthday);
@@ -41,10 +59,12 @@ public class UserInfoPanel extends basicPanel {
             loans.add(new basicLabel(v.get(i)[1]));
             loans.add(new basicLabel(v.get(i)[2]));
         }
-        search_ = new basicTextField(); search = new basicButton("Search Book");
-        notFound = new basicLabel(""); notFound.setForeground(Color.RED);
+        searchBook_ = new basicTextField();
+        if (u.admin) searchBook = new basicButton("Search/Add Book");
+        else searchBook = new basicButton("Search Book");
+        BookNotFound = new basicLabel(""); BookNotFound.setForeground(Color.RED);
 
-        loans.add(search_); loans.add(search); loans.add(notFound);
+        loans.add(searchBook_); loans.add(searchBook); loans.add(BookNotFound);
         loans.add(new basicLabel("")); loans.add(new basicLabel("")); loans.add(new basicLabel(""));
         loans.add(new LogOutPanel(bp));
 

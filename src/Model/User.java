@@ -16,21 +16,28 @@ public class User {
         uTable = new Users();
     }
 
+    public User(String email_){
+        email = email_;
+        uTable = new Users();
+    }
+
     public boolean setUser(){
         HashMap<String, Object> hm = uTable.select(this.email, this.password);
         if (hm.size()==0) return false;
         this.userID = (Integer) hm.get("userID");
         this.name = hm.get("name")+""; this.firstName = hm.get("firstName") + "";
-        this.birthday = hm.get("birthday")+""; this.isAdmin = (Boolean) hm.get(isAdmin);
+        this.birthday = hm.get("birthday")+""; this.isAdmin = (Boolean) hm.get("isAdmin");
         return true;
     }
 
-    private void setUser(int ID){
-        Users u = new Users();
-        HashMap<String, Object> hm = u.select(ID);
-        this.email = hm.get("email") + "";
+    public boolean setUser(User ad){
+        Users uTable = new Users();
+        HashMap<String, Object> hm = uTable.select(this.email);
+        if (hm.size()==0 || ! ad.admin) return false;
+        this.userID = (Integer) hm.get("userID") ; this.password = hm.get("password")+"";
         this.name = hm.get("name")+""; this.firstName = hm.get("firstName") + "";
-        this.birthday = hm.get("birthday")+""; this.isAdmin = (Boolean) hm.get(isAdmin);
+        this.birthday = hm.get("birthday")+""; this.isAdmin = (Boolean) hm.get("isAdmin");
+        return true;
     }
 
     public void editUser(){
