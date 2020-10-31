@@ -17,9 +17,9 @@
 **Modelisation of the Front classes without the controllers**
 
 
-![Alt text](Modelisation/Front.png?raw=true FrontAPI)
+![Alt text](Modelisation/Front.png?raw=true "title")
 
 
 **Modelisation of the Back API**
 
-![Alt text](Modelisation/BackAPI.png?raw=true BackAPI)
+![Alt text](Modelisation/BackAPI.png?raw=true "title")
