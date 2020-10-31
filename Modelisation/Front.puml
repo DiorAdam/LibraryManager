@@ -1,0 +1,30 @@
+@startuml
+
+class AppFrame extends basicFrame{
+    public static void main(String[] args)
+}
+AppFrame ..> BigPanel
+
+class BigPanel extends basicPanel{
+    CardLayout
+}
+
+class LogInSignUpPanel extends JSplitPane{
+}
+
+class NavPanel extends JTabbedPane{
+
+}
+BigPanel ..> LogInSignUpPanel
+BigPanel ..> NavPanel
+
+NavPanel ..> UserInfoPanel
+NavPanel ..> BookInfoPanel
+NavPanel ..> EditBookPanel
+NavPanel ..> EditUserPanel
+
+UserInfoPanel ..> LogOutPanel
+
+
+
+@enduml

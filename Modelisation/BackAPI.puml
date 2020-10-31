@@ -16,7 +16,7 @@ class User{
     boolean isAdmin
     boolean setUser(String email, String password)
     void delUser()
-    void editUser(HashMap<String, Object> params)
+    void editUser()
     Vector<String[]> getLoans()
 }
 User ..> Users
@@ -37,7 +37,7 @@ class Book{
     int year, remaining
     boolean setBook(String title)
     void delBook()
-    void editBook(HashMap<String, Object> params)
+    void editBook()
     Vector<String[]> getLoans()
 }
 Book ..> Books
