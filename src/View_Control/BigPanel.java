@@ -1,13 +1,16 @@
 package View_Control;
 
 
+import View_Control.LogInOut.LogInSignUpControl;
+import View_Control.LogInOut.LogInSignUpPanel;
+import View_Control.Navigation.NavPanel;
 import basicGUI.*;
 
 import java.awt.*;
 
 public class BigPanel extends basicPanel{
-    LogInSignUpPanel logSign;
-    NavPanel nPanel;
+    public LogInSignUpPanel logSign;
+    public NavPanel nPanel;
     LogInSignUpControl logSignControl;
 
     public BigPanel(){

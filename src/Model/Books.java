@@ -1,11 +1,7 @@
 package Model;
 
+import java.sql.*;
 import java.util.HashMap;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.ResultSet;
 
 
 public class Books {
@@ -28,6 +24,19 @@ public class Books {
 
     public void add(HashMap<String, Object> params) {
         String sql = "INSERT INTO BooksTab(BookId, title, author, year, remaining) VALUES(?,?,?,?,?)";
+
+        if (!params.containsKey("bookID")){
+            String sqlID = "Select Max(bookID) from BooksTab";
+            try (Connection conn = connect();
+                 Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(sqlID)){
+
+                params.put("bookID", rs.getInt(1)+1);
+            }
+            catch(Exception e){
+                System.err.println(e);
+            }
+        }
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)){
             System.out.println("Inserting Book " + params.get("title") + " into BooksTab");

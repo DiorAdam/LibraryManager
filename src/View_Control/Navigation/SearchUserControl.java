@@ -1,6 +1,8 @@
-package View_Control;
+package View_Control.Navigation;
 
 import Model.User;
+import View_Control.Navigation.EditUserPanel;
+import View_Control.Navigation.NavPanel;
 
 
 import java.awt.event.ActionEvent;
@@ -9,7 +11,7 @@ import java.awt.event.ActionListener;
 public class SearchUserControl implements ActionListener{
     NavPanel nPanel;
     User loggedUser;
-    EditDelUser edUser;
+    EditUserPanel edUser;
     User u;
     public SearchUserControl(NavPanel nPanel_, User u_){
         nPanel = nPanel_;
@@ -22,7 +24,7 @@ public class SearchUserControl implements ActionListener{
         if (cmd.equals("Search User")){
             u = new User(email);
             if (u.setUser(loggedUser)){
-                edUser = new EditDelUser(u, nPanel.suControl);
+                edUser = new EditUserPanel(u, nPanel.suControl);
                 int idx = nPanel.indexOfTab("Edit User");
                 if (idx >=0) nPanel.setComponentAt(idx, edUser);
                 else nPanel.add("Edit User", edUser);

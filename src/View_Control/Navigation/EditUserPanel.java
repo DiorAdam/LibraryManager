@@ -1,16 +1,16 @@
-package View_Control;
+package View_Control.Navigation;
 
 import Model.User;
 import basicGUI.*;
 
 import java.awt.*;
 
-public class EditDelUser extends basicPanel{
+public class EditUserPanel extends basicPanel{
     User u;
     basicTextField email_, name_, firstName_, birthday_;
     basicButton edit, delete;
     basicLabel feedBack;
-    public EditDelUser(User u_, SearchUserControl suControl){
+    public EditUserPanel(User u_, SearchUserControl suControl){
         u = u_;
         email_ = new basicTextField(); email_.setText(u.email);
         name_ = new basicTextField(); name_.setText(u.name);
