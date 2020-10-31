@@ -1,4 +1,4 @@
-package View_Control;
+package View_Control.Navigation;
 
 import Model.Book;
 import basicGUI.*;

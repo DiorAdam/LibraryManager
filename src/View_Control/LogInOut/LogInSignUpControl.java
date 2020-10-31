@@ -1,7 +1,9 @@
-package View_Control;
+package View_Control.LogInOut;
 
 import Model.User;
 import Model.Users;
+import View_Control.BigPanel;
+import View_Control.Navigation.NavPanel;
 
 import java.util.HashMap;
 

@@ -1,6 +1,7 @@
-package View_Control;
+package View_Control.Navigation;
 
 import Model.User;
+import View_Control.BigPanel;
 //import basicGUI.*;
 
 import javax.swing.*;

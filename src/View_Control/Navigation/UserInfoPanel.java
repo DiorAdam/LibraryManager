@@ -1,7 +1,9 @@
-package View_Control;
+package View_Control.Navigation;
 
 import java.util.Vector;
 import Model.User;
+import View_Control.BigPanel;
+import View_Control.LogInOut.LogOutPanel;
 import basicGUI.*;
 
 import java.awt.*;

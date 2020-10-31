@@ -1,4 +1,4 @@
-package View_Control;
+package View_Control.LogInOut;
 
 import basicGUI.*;
 
@@ -15,7 +15,7 @@ import java.awt.*;
 
 public class LogInSignUpPanel extends JSplitPane{
     JPanel left, right;
-    JButton logIn, signUp;
+    public JButton logIn, signUp;
     JLabel emailLeft, emailRight, name, firstName, passwordLeft, passwordRight, birthday, wrongInputLeft, wrongInputRight;
     JPasswordField passwordLeft_, passwordRight_;
     public JTextField emailLeft_, emailRight_, name_, firstName_, birthday_, admin_;

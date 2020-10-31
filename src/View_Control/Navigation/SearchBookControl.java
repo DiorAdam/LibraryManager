@@ -1,4 +1,4 @@
-package View_Control;
+package View_Control.Navigation;
 
 import Model.Book;
 import Model.Books;
@@ -102,7 +102,7 @@ public class SearchBookControl implements ActionListener {
         }
 
         else if (cmd.equals("Borrow")){
-            b.setBook();
+            //b.setBook();
             if (b.remaining == 0){
                 nPanel.biPanel.borrow_.setText("Out of Stock");
             }
@@ -138,6 +138,7 @@ public class SearchBookControl implements ActionListener {
                     params.put("start", cur); params.put("end", ret);
                     lTable.add(params);
                     nPanel.uiPanel = new UserInfoPanel(nPanel.bp, nPanel.u);
+                    nPanel.uiPanel.searchBook.addActionListener(nPanel.sbControl);
                     nPanel.setComponentAt(0,nPanel.uiPanel);
 
                 }

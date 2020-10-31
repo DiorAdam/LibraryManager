@@ -1,6 +1,8 @@
-package View_Control;
+package View_Control.Navigation;
 
 import Model.User;
+import View_Control.Navigation.EditUserPanel;
+import View_Control.Navigation.NavPanel;
 
 
 import java.awt.event.ActionEvent;

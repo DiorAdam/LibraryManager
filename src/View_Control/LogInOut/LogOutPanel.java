@@ -1,5 +1,7 @@
-package View_Control;
+package View_Control.LogInOut;
 
+import View_Control.BigPanel;
+import View_Control.LogInOut.LogInSignUpControl;
 import basicGUI.*;
 
 

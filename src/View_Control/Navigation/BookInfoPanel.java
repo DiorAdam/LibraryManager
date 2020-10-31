@@ -1,4 +1,4 @@
-package View_Control;
+package View_Control.Navigation;
 
 import java.awt.*;
 
@@ -23,6 +23,6 @@ public class BookInfoPanel extends basicPanel{
         returnDate_.setText("Return Date (YYYY-MM-DD)");
         this.add(returnDate_); this.add(borrow);
 
-        borrow.addActionListener(new SearchBookControl(nPanel));
+        borrow.addActionListener(nPanel.sbControl);
     }
 }
