@@ -1,6 +1,7 @@
 package View_Control;
 
 import Model.Book;
+import Model.Books;
 import Model.Loans;
 
 import java.awt.*;
@@ -36,9 +37,10 @@ public class SearchBookControl implements ActionListener {
             b = (title.length()>0)? new Book(title) : null;
             if (b == null || b.setBook()){
                 ebPanel = new EditBookPanel(this.nPanel, b);
-                int idx = nPanel.indexOfTab("Edit Book");
-                if ( idx >= 0) {
-                    nPanel.add(b.title, ebPanel);
+                int idx = (b==null)? nPanel.indexOfTab("Add Book") : nPanel.indexOfTab("Edit Book");
+                if ( idx < 0) {
+                    if (b==null) nPanel.add("Add Book", ebPanel);
+                    else nPanel.add("Edit Book", ebPanel);
                 }
                 else{
                     nPanel.setComponentAt(idx, ebPanel);
@@ -51,7 +53,7 @@ public class SearchBookControl implements ActionListener {
             }
         }
 
-        else if (cmd.equals("editBook")){
+        else if (cmd.equals("Edit Book")){
             try {
                 b.title = ebPanel.title_.getText();
                 b.author = ebPanel.author_.getText();
@@ -65,6 +67,37 @@ public class SearchBookControl implements ActionListener {
                 System.err.println(e);
                 ebPanel.feedBack.setText("Error While editing book");
                 ebPanel.feedBack.setForeground(Color.RED);
+            }
+        }
+
+        else if (cmd.equals("Add Book")){
+            HashMap<String, Object> params = new HashMap<>();
+            params.put("title", ebPanel.title_.getText());
+            params.put("author", ebPanel.author_.getText());
+            params.put("remaining", Integer.parseInt(ebPanel.remaining_.getText()));
+            params.put("year", Integer.parseInt(ebPanel.year_.getText()));
+            Books bTable = new Books();
+            try {
+                bTable.add(params);
+                ebPanel.feedBack.setForeground(Color.GREEN);
+                ebPanel.feedBack.setText("Book Successfully added");
+            }
+            catch(Exception e){
+                System.err.println(e);
+                ebPanel.feedBack.setForeground(Color.RED);
+                ebPanel.feedBack.setText("Error while adding Book");
+            }
+        }
+        else if (cmd.equals("Delete Book")){
+            try{
+                b.delBook();
+                ebPanel.feedBack.setForeground(Color.GREEN);
+                ebPanel.feedBack.setText("Book Successfully Deleted");
+            }
+            catch (Exception e){
+                System.err.println(e);
+                ebPanel.feedBack.setForeground(Color.RED);
+                ebPanel.feedBack.setText("Error while Deleting Book");
             }
         }
 

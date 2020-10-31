@@ -16,6 +16,7 @@ public class EditBookPanel extends basicPanel{
         author_ = new basicTextField();
         year_ = new basicTextField();
         remaining_ = new basicTextField();
+        feedBack = new basicLabel("");
 
         this.add(new basicLabel("Title")); this.add(title_);
         this.add(new basicLabel("Author")); this.add(author_);
@@ -26,14 +27,17 @@ public class EditBookPanel extends basicPanel{
         if (b != null){
             title_.setText(b.title); author_.setText(b.author);
             year_.setText(b.year+""); remaining_.setText(b.remaining+"");
+            editBook = new basicButton("Edit Book");
+            delBook = new basicButton("Delete Book");
+            editBook.addActionListener(nPanel.sbControl);
+            delBook.addActionListener(nPanel.sbControl);
             this.add(editBook); this.add(delBook);
         }
         else{
+            addBook = new basicButton("Add Book");
+            addBook.addActionListener(nPanel.sbControl);
             this.add(addBook);
         }
 
-        addBook.addActionListener(nPanel.sbControl);
-        editBook.addActionListener(nPanel.sbControl);
-        delBook.addActionListener(nPanel.sbControl);
     }
 }
