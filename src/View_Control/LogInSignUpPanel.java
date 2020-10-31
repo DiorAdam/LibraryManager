@@ -18,7 +18,7 @@ public class LogInSignUpPanel extends JSplitPane{
     JButton logIn, signUp;
     JLabel emailLeft, emailRight, name, firstName, passwordLeft, passwordRight, birthday, wrongInputLeft, wrongInputRight;
     JPasswordField passwordLeft_, passwordRight_;
-    JTextField emailLeft_, emailRight_, name_, firstName_, birthday_, admin_;
+    public JTextField emailLeft_, emailRight_, name_, firstName_, birthday_, admin_;
     public LogInSignUpPanel(){
 
         this.setDividerSize(20); this.setDividerLocation(300);
