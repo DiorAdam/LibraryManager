@@ -8,7 +8,7 @@ public class Books {
     private String url;
 
     public Books(){
-        this.url = "jdbc:sqlite:"+"D:\\k1gilo\\ST5_capteurs\\TP_DB\\TP_DB.db";
+        this.url = "jdbc:sqlite:"+"TP_DB.db";
     }
 
     private Connection connect() {

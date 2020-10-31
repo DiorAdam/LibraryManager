@@ -14,7 +14,7 @@ import java.sql.Statement;
 public class Users {
     final private String url;
     public Users(){
-        url = "jdbc:sqlite:"+"D:\\k1gilo\\ST5_capteurs\\TP_DB\\TP_DB.db";
+        url = "jdbc:sqlite:"+"TP_DB.db";
     }
     private Connection connect() {
         Connection conn = null;

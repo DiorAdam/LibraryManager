@@ -9,7 +9,7 @@ public class Loans {
     final private String url;
 
     public Loans(){
-        url = "jdbc:sqlite:"+"D:\\k1gilo\\ST5_capteurs\\TP_DB\\TP_DB.db";
+        url = "jdbc:sqlite:"+"TP_DB.db";
     }
 
     private Connection connect() {
