@@ -14,12 +14,11 @@
  - Add or Delete a Book from the database. ([EditBookPanel](src/View_Control/Navigation/EditBookPanel.java))
 
 
-**Modelisation of the Front classes without the controllers**
-
+## Modelisation of the Front classes without the controllers
 
 ![Alt text](Modelisation/Front.png?raw=true "title")
 
 
-**Modelisation of the Back API**
+## Modelisation of the Back API
 
 ![Alt text](Modelisation/BackAPI.png?raw=true "title")
